@@ -1,19 +1,23 @@
-// import { useState } from "react";
+import { useState } from "react";
+import React from "react";
 import "./App.scss";
 import { PageWelcome } from "./pages/PageWelcome";
 import { PageBooks } from "./pages/PageBooks";
 import { PageAbout } from "./pages/PageAbout";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState(`welcome`);
   return (
     <div className="App">
       <h1>Personal Site</h1>
       <hr />
-      Welcome | Books | About
+      <span onClick={() => setCurrentPage("welcome")}>Welcome</span> |
+      <span onClick={() => setCurrentPage("books")}>Books</span> |
+      <span onClick={() => setCurrentPage("about")}>About</span>
       <hr />
-      <PageWelcome />
-      <PageBooks />
-      <PageAbout />
+      {currentPage === "welcome" && <PageWelcome />}
+      {currentPage === "books" && <PageBooks />}
+      {currentPage === "about" && <PageAbout />}
     </div>
   );
 }
